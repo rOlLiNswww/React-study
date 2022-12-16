@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="test"></div>
+<div id="test1"></div>
+<div id="test2"></div>
+<div id="test3"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+
+<script type="text/babel">
+  class Person extends React.Component{
+      render(){
+          return(
+                  <ul>
+                      <li>name: {this.props.name}</li>
+                      <li>age: {this.props.age}</li>
+                      <li>gender: {this.props.gender}</li>
+                  </ul>
+              )
+      }
+      //设置标签规则
+      static propTypes={
+          name:PropTypes.string.isRequired,
+          age:PropTypes.number,
+          gender:PropTypes.string,
+
+      }
+
+      //默认值
+      static defaultProps={
+          gender:'未知',
+          age:18
+
+      }
+  }
+
+
+  ReactDOM.render(<Person name = "Rollins" age = {21} gender= "men"/>,document.getElementById('test'))
+  ReactDOM.render(<Person name = "Ryan" />,document.getElementById('test1'))
+  ReactDOM.render(<Person name = "David" age = {18} gender= "men"/>,document.getElementById('test2'))
+  const p = {name:'Alex',age:20,gender:'male'}
+  ReactDOM.render(<Person {...p} />,document.getElementById('test3'))
+</script>
+
+</body>
+</html>

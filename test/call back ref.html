@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ref2</title>
+  <style>
+
+  </style>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  class Demo extends React.Component{
+    myRef = React.createRef();
+    render(){
+      return(
+              <div>
+                <input ref ={this.ref} type="text" placeholder="click button to show text"/>
+                <button onClick={this.showData}>show</button>
+                <input onBlur={this.showBlur} ref = {c => this.input2 = c} type="text" placeholder="click white space to show text"/>
+              </div>)
+
+    }
+    showData=()=>{
+      alert(this.input1.value)
+      console.log(111)
+    }
+    showBlur=()=>{
+      alert(this.input2.value)
+    }
+  }
+
+  ReactDOM.render(<Demo/>,document.getElementById('test'))
+</script>
+
+</body>
+</html>
