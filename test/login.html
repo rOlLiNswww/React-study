@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+
+  </style>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  class Login extends React.Component{
+    render(){
+      return(
+        <div>
+          <h1>非受控：</h1>
+          <form  onSubmit={this.handleSub}>
+          用户名： <input  ref={c=>this.username = c} type="text" name="username"/>
+          密码： <input ref={c=>this.password = c} type="password" name="password"/>
+          <button>login</button>
+          </form>
+
+          <h1>受控：</h1>
+          <form  onSubmit={this.handleSub_2}>
+            用户名： <input onChange={(event)=>{this.saveData('username',event)}}  type="text" name="username"/>
+            密码： <input onChange={(event)=>{this.saveData('password',event)}}  type="password" name="password"/>
+            <button>login</button>
+          </form></div>
+    )
+    }
+    saveData=(dataType,event)=>{
+        this.setState({[dataType]:event.target.value})
+    }
+
+    handleSub =(event)=>{
+      event.preventDefault()
+      alert(`用户名：${this.username.value} 密码：${this.password.value}`)
+  }
+
+    handleSub_2 =(event)=>{
+      event.preventDefault()
+      alert(`用户名：${this.state.username} 密码：${this.state.password}`)
+    }
+  }
+
+  ReactDOM.render(<Login/>,document.getElementById('test'))
+</script>
+
+</body>
+</html>

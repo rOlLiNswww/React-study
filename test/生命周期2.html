@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ref2</title>
+  <title>生命周期</title>
   <style>
 
   </style>
@@ -14,25 +14,25 @@
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
-  class Demo extends React.Component{
+  class Demo extends React.Component {
+    state={count:0}
+    shouldComponentUpdate(){
+     return true
+    }
+
+    add=()=>{
+      const {count}= this.state
+      this.setState({count:count+1})
+    }
     render(){
       return(
               <div>
-                <input ref ={c=>this.input1=c} type="text" placeholder="click button to show text"/>
-                <button onClick={this.showData}>show</button>
-                <input onBlur={this.showBlur} type="text" placeholder="click white space to show text"/>
-              </div>)
-
-    }
-    showData=()=>{
-      alert(this.input1.value)
-      console.log(111)
-    }
-    showBlur=(event)=>{
-      alert(event.target.value)
+                <h2>当前和为:{this.state.count}</h2>
+                <button onClick={this.add}>click me +1</button>
+              </div>
+      )
     }
   }
-
   ReactDOM.render(<Demo/>,document.getElementById('test'))
 </script>
 
